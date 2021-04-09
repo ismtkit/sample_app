@@ -13,13 +13,19 @@ class TodolistsController < ApplicationController
   def index
     @lists = List.all
   end
-  
+
   def show
-    @lists = List.find(params[:id])
+    @list = List.find(params[:id])
   end
-  
+
   def edit
-    @lists = List.find(params[:id])
+    @list = List.find(params[:id])
+  end
+
+  def update
+    list = List.find(params[:id])
+    list.update(list_params)
+    redirect_to todolist_path(list.id)
   end
 
 private
