@@ -7,8 +7,20 @@ class TodolistsController < ApplicationController
   def create
     list = List.new(list_params)
     list.save
-    redirect_to '/top'
-end
+    redirect_to todolist_path(list.id)
+  end
+
+  def index
+    @lists = List.all
+  end
+  
+  def show
+    @lists = List.find(params[:id])
+  end
+  
+  def edit
+    @lists = List.find(params[:id])
+  end
 
 private
 def list_params
